@@ -63,7 +63,11 @@ def created_booking(booking_requst: BookingRequest):
     )
     if seat_check(user):
         token = create_token(user.id, user.first_name, user.last_name, user.email)
-        send_email(user.email, token)
+        try:
+            send_email(user.email, token)
+        except Exception as e:
+            preturn {"message": "Something went wronп with email sending"}
+    return {"message": "Email failed"}
         return {"message": "Check your email"}
 
     return {"message": "Something went wrong"}
