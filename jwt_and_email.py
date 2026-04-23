@@ -1,17 +1,19 @@
-
+import os
 import jwt
 from datetime import datetime, timedelta, timezone
 import requests
 
 
-SECRET_KEY = "my_super_secret_key_which_is_very_long_123456"
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 TOKEN_EXPIRE_MINUTES = 30
 
-BREVO_API_KEY = "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"
-SENDER_EMAIL = "danrad1@live.kktavastia.fi"
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 
-
+print("SECRET_KEY:", SECRET_KEY)
+print("BREVO_API_KEY:", BREVO_API_KEY)
+print("SENDER_EMAIL:", SENDER_EMAIL)
 
 # === Модели ===
 
