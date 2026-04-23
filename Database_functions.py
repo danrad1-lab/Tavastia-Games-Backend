@@ -1,4 +1,5 @@
 from sqlalchemy.sql.functions import user
+from sqlalchemy.testing import fails
 
 from Datebase import SessionLocal
 from Models import User, Seat
@@ -36,7 +37,16 @@ def seat_booking(user: User):
         return {"status": "Seat booked"}
 
 
+def seat_check(user: User):
+    with SessionLocal() as db:
+        seat = db.query(Seat).filter_by(id=user.id).first()
+        if not seat:
+            return False
 
+        if seat.is_booked:
+            return False
+
+        return True
 
 def get_user(user_id: int):
     with SessionLocal() as db:
