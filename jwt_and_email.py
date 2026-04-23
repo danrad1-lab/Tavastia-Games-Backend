@@ -67,3 +67,8 @@ def send_email(email: str, token: str):
     }
 
     res = requests.post(url, json=payload, headers=headers)
+
+    print("EMAIL STATUS:", res.status_code)
+    print("EMAIL RESPONSE:", res.text)
+
+    return res.status_code, res.text
