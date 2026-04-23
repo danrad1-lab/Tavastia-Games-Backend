@@ -89,8 +89,7 @@ def confirm_booking(tokenrequest: TokenRequest):
     )
     if seat_check(user): # seat_check return true if place is free.
         set_user(user)
-        seat_booking(user)
-        return {"message": "Seat registered"}
+        return seat_booking(user)
 
     return {"message": "Something went wrong"}
 
