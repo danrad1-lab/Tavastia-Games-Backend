@@ -91,7 +91,7 @@ def confirm_booking(tokenrequest: TokenRequest):
         set_user(user)
         return seat_booking(user)
 
-    return {user}
+    return user
 
 
 
