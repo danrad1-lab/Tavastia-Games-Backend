@@ -77,6 +77,10 @@ def created_booking(booking_requst: BookingRequest):
 @app.post("/book_seat")
 def confirm_booking(tokenrequest: TokenRequest):
     data = verify_token(tokenrequest.token)
+
+    if not data:
+        return {"error": "Invalid or expired token"}
+    
     user = User(
         id=data.get("id"),
         first_name=data.get("first_name"),
