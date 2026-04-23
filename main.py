@@ -70,7 +70,7 @@ def created_booking(booking_requst: BookingRequest):
     
         return {"message": "Check your email"}
         
-    return {"message": "Something went wrong1"}
+    return {"message": "Something went wrong"}
 
 
 
@@ -91,7 +91,7 @@ def confirm_booking(tokenrequest: TokenRequest):
         set_user(user)
         return seat_booking(user)
 
-    return {"message": "Something went wrong2"}
+    return {user}
 
 
 
