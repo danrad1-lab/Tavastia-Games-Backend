@@ -66,10 +66,10 @@ def created_booking(booking_requst: BookingRequest):
         try:
             send_email(user.email, token)
         except Exception as e:
-            preturn {"message": "Something went wronп with email sending"}
-    return {"message": "Email failed"}
+            return {"message": "Something went wronп with email sending"}
+    
         return {"message": "Check your email"}
-
+        
     return {"message": "Something went wrong"}
 
 
