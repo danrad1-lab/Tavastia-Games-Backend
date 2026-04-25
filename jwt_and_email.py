@@ -70,7 +70,30 @@ def send_email(email: str, token: str):
 
     res = requests.post(url, json=payload, headers=headers)
 
-    print("EMAIL STATUS:", res.status_code)
-    print("EMAIL RESPONSE:", res.text)
+    return res.status_code, res.text
+
+
+def send_seat_email(email: str, seat: int):
+    url = "https://api.brevo.com/v3/smtp/email"
+    verify_link = f"https://tavastiagames.com/seat-verify.html?token={token}" # Заменить на ссылку на апи страницу сервера
+
+    payload = {
+        "sender": {"email": SENDER_EMAIL},
+        "to": [{"email": email}],
+        "subject": "Paikka",
+        "htmlContent": f"""
+        <h3>Paikka varaus</h3>
+        <p>Varasit paikan {seat}:</p>
+        <a href="{verify_link}">{verify_link}</a>
+        """
+    }
+
+    headers = {
+        "accept": "application/json",
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json"
+    }
+
+    res = requests.post(url, json=payload, headers=headers)
 
     return res.status_code, res.text
