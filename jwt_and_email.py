@@ -79,10 +79,10 @@ def send_seat_email(email: str, seat: int):
     payload = {
         "sender": {"email": SENDER_EMAIL},
         "to": [{"email": email}],
-        "subject": "Paikka",
+        "subject": "Paikan varaus",
         "htmlContent": f"""
-        <h3>Paikka varaus</h3>
-        <p>Varasit paikan {seat}:</p>
+        <h3>Paikan varaus</h3>
+        <p>Olet varannut paikan <b>{seat}</b>.</p>
         """
     }
 
@@ -92,6 +92,6 @@ def send_seat_email(email: str, seat: int):
         "content-type": "application/json"
     }
 
-    res = requests.post(url, json=payload, headers=headers)
+    res = requests.post(url, json=payload, headers=headers, timeout=10)
 
     return res.status_code, res.text
