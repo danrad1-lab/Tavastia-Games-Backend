@@ -87,10 +87,16 @@ def confirm_booking(tokenrequest: TokenRequest):
         last_name=data.get("last_name"),
         email=data.get("email")
     )
+
+    
     if seat_check(user): # seat_check return true if place is free.
+        
         set_user(user)
+        
         seat_booking(user)
+        
         send_seat_email(user.email, user.id)
+        
         return {"message": "Paikka on varattu"}
 
     return {"message": "Something went wrong with seat booking"}
