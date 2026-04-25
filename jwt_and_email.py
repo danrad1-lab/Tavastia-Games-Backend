@@ -75,7 +75,6 @@ def send_email(email: str, token: str):
 
 def send_seat_email(email: str, seat: int):
     url = "https://api.brevo.com/v3/smtp/email"
-    verify_link = f"https://tavastiagames.com/seat-verify.html?token={token}" # Заменить на ссылку на апи страницу сервера
 
     payload = {
         "sender": {"email": SENDER_EMAIL},
@@ -84,7 +83,6 @@ def send_seat_email(email: str, seat: int):
         "htmlContent": f"""
         <h3>Paikka varaus</h3>
         <p>Varasit paikan {seat}:</p>
-        <a href="{verify_link}">{verify_link}</a>
         """
     }
 
