@@ -4,6 +4,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from jwt_and_email import send_email, create_token, verify_token, send_seat_email
+import os
+
 app = FastAPI()
 
 
@@ -43,7 +45,7 @@ app.add_middleware(
 )
 
 
-PASSWORD = "123456789"
+PASSWORD = os.getenv("PASSWORD_FOR_DELETING")
 @app.get("/")
 def read_root():
     return {"message": "Hello World"}
