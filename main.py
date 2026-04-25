@@ -3,7 +3,7 @@ from Database_functions import get_all_seats, seat_booking, set_user, delete_boo
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from jwt_and_email import send_email, create_token, verify_token
+from jwt_and_email import send_email, create_token, verify_token, send_seat_email
 app = FastAPI()
 
 
@@ -89,7 +89,9 @@ def confirm_booking(tokenrequest: TokenRequest):
     )
     if seat_check(user): # seat_check return true if place is free.
         set_user(user)
-        return seat_booking(user)
+        seat_booking(user)
+        send_seat_email(user.email, user.id)
+        return {"message": "Paikka on varattu"}
 
     return {"message": "Something went wrong with seat booking"}
 
