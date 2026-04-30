@@ -37,7 +37,7 @@ class DeleteRequest(BaseModel):
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "*",
+        "https://tavastiagames.com",
     ],
     allow_credentials=False,
     allow_methods=["*"],
